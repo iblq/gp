@@ -1,0 +1,65 @@
+.innerUl li{
+    list-style-type: none;
+    
+}
+.innerUl{
+    padding-left: 0px;
+}
+.innerUl{
+    width: 100%;    
+}
+
+.ctrl{
+    overflow: hidden;
+    height: 20px;
+}
+.ctrl>a, .ctrl>span{
+    overflow: hidden;
+    display: block;
+    float: left;
+}
+.ctrl .checkbox{
+    position: relative !important;
+    width: 50px;
+    display: inline !important;
+    float:right;
+}
+.ctrl span{
+    margin-right:5px;
+}
+.layerUl li>.checkbox, .anaUl li>.checkbox {
+    line-height: 26px;
+}
+.layerUl li input[class="specialLayers"], .anaUl li input{
+    margin-right: 5px;
+}
+.glyphicon-adjust{
+    margin-top: 2px;
+}
+
+.active{
+    background-color: #75b9e6 !important;
+    color: white !important;
+}
+
+/* 透明度 */
+.navSlide{
+    width: 60px;
+    float: right;
+}
+
+.layerUl>li{
+    padding: 5px 10px 3px 15px;
+    border-bottom: 1px solid lightgrey;
+}
+.secDiv>li{
+    padding: 2px 10px 2px 30px;
+
+}
+.rotateLi{
+    line-height: 26px;
+}
+/* 流域后 icon */
+.secCtrl{
+    display: none;
+}

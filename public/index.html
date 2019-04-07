@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>河南省小流域管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href="js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
+    <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="js/plugin/ol.css" rel="stylesheet" />
+    <link href="js/plugin/bootstrap-treeview.min.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/nav.css" rel="stylesheet" />
+
+    <script src="js/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script src="js/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/plugin/echarts.min.js"></script>
+    <script src="js/plugin/md5.js"></script>
+    <script src="js/plugin/ol.js"></script>
+    <script src="js/plugin/bootstrap-treeview.min.js"></script>
+    <script src="js/plugin/xlsx.full.min.js"></script>
+
+    <script src="js/rain.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/index.js"></script>
+    <!-- <script src="js/login.js"></script> -->
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div id="header" class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <!--<img id="logo" src="img/logo.png" alt="">-->
+
+                <span class="logoText">
+                    <span class="glyphicon glyphicon-home" style="margin:0 10px;"></span>
+                    河南省小流域参数化研究平台</span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 user">
+                <div class="pull-right topBtn">
+                    <a id="username" href="javascript:void(0)">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <strong>用户名</strong>
+                    </a>
+                    <a id="logoutBtn" href="javascript:void(0)">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                        注销
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar">
+        <div class="sidebar-inner">
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="map" class="map">
+            <button type="button" id="search">数据搜索</button>
+            <button type="button" id="upload">上传文件</button>
+            <button type="button" id="sideLayer">侧面板</button>
+
+            <div id="rightBar" class="show-hide">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <div id="info">
+                            <div id="detail">
+                                请先勾选雨量站图层，然后按住"Ctrl"键选择范围，然后点击开始计算
+                            </div>
+                            <div id="data">
+                                <ul>
+                                    <li>
+                                        <h4>DEM提取</h4>
+                                        <div class="progress">
+                                            <div id="progress-bar1" class="progress-bar progress-bar-striped active"
+                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: 0%">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h4>投影转换</h4>
+                                        <div class="progress">
+                                            <div id="progress-bar2" class="progress-bar progress-bar-striped active"
+                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: 0%">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h4>提取水文站</h4>
+                                        <div class="progress">
+                                            <div id="progress-bar4" class="progress-bar progress-bar-striped active"
+                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: 0%">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h4>生成矢量数据</h4>
+                                        <div class="progress">
+                                            <div id="progress-bar5" class="progress-bar progress-bar-striped active"
+                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: 0%">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h4>导入模型运算</h4>
+                                        <div class="progress">
+                                            <div id="progress-bar7" class="progress-bar progress-bar-striped active"
+                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                                                aria-valuemax="100" style="width: 0%">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- info -->
+                        <button type="button" id="calculate" class="btn btn-block btn-success">开始计算</button>
+                        <div id="rainChart">
+                        </div>
+                    </div>
+                    <!-- col-lg-12 col-sm-12 -->
+                </div>
+                <!-- row -->
+            </div>
+            <!-- rightBar -->
+        </div>
+    </div>
+    <div id="tuliDiv"></div>
+    <div id="modal-chart" class="modal fade" tabindex="-1" role="dialog" style="z-index:999999">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="chart-modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12" id="params-console">
+                            <div class="col-lg-4 col-md-4">
+                                <h5>conductivity：<span class="conduct-slider-value">5E-8</span></h5>
+                                <div class="conductivity-slider mySlider"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin:15px 0px;">
+                        <div class="col-lg-12">
+                            <button id="run-model" class="btn btn-success">运行模型</button>
+                        </div>
+                    </div>
+                    <div class="row" id="row-chart">
+                        <div class="col-lg-12" id="result-chart" style="height:300px">
+                        </div>
+                    </div>
+                    <div class="row" id="row-progress">
+                        <div class="col-lg-12">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- row progress -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="modal-legend" class="modal fade" tabindex="-1" role="dialog" style="z-index:999999">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="legend-modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="row legend-content" id="legend-content-tantou">
+                        <div class="col-lg-12">
+                            <span style='color:#CAE1FF'>▉</span> RANK1 <span>(0)</span><br />
+                            <span style='color:#dff1b4'>▉</span> RANK2 <span>(0)</span><br />
+                            <span style='color:#EEE685'>▉</span> RANK3 <span>(0)</span><br />
+                            <span style='color:#ff9900'>▉</span> RANK4 <span>(0)</span><br />
+                            <span style='color:#f3843e'>▉</span> RANK5 <span>(17)</span><br />
+                            <span style='color:#ff5a09'>▉</span> RANK6 <span>(20)</span><br />
+                            <span style='color:#DC143C'>▉</span> RANK7 <span>(8)</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div id="upload-container"></div>
+</body>
+
+</html>

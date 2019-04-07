@@ -1,0 +1,425 @@
+body{
+    width:100%;
+    overflow: hidden;
+}
+/* -----------------------------------------
+   Sidebar styles
+----------------------------------------- */
+#sidebar {
+    width: 200px;
+    height: auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 50px;
+    z-index: 99;
+}
+.sidebar-inner{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#sidebar:hover .resizableBtn {
+    display: block;
+}
+#sidebar:after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    background: #f3f5f6;
+    border-right: 1px solid #e7e7e2;
+    z-index: -1;
+}
+
+#sidebar .sidebar-inner {
+    position: relative;
+    width: auto;
+    height: 100%;
+}
+#sidebar{
+    border-right: lightgrey !important;
+}
+/* -----------------------------------------
+   Header styles
+----------------------------------------- */
+#header {
+    height: 50px;
+    background: #2196f3;
+    z-index: 100;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+#header .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#header .navbar .navbar-toggle {
+    margin-right: 20px;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+}
+
+#header .navbar .navbar-brand .text-logo-element {
+    font-size: 32px;
+    color: #1a608f;
+    margin-left: 34px;
+    margin-right: 10px;
+    margin-top: -8px;
+}
+
+#header .navbar .navbar-brand .text-logo,
+#header .navbar .navbar-brand .text-slogan {
+    font-weight: bold;
+    font-family: 'Droid Sans';
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+#header .navbar .navbar-brand .text-logo {
+    color: #124363;
+}
+
+#header .navbar .navbar-brand .text-slogan {
+    color: #ffffff;
+}
+
+#header .navbar .nav li a:hover,
+#header .navbar .nav li a:focus {
+    background: #3498da;
+}
+
+.logoText {
+    font-weight: bold;
+    font-family: 'Droid Sans';
+    font-size: 22px;
+    color: white;
+    /*text-transform: uppercase;*/
+    line-height: 50px;
+    display: inline-block;
+}
+
+#logo {
+    height: 44px;
+    padding-bottom: 4px;
+}
+
+/* -----------------------------------------
+   Content
+----------------------------------------- */
+#map {
+    position: relative;
+    height: 100vh !important;
+    margin: 0 0 0 200px;
+    padding: 55px 5px 5px 5px;
+}
+
+/*#content.sidebar-page {*/
+    /*margin-left: 200px;*/
+/*}*/
+
+#content.full-page {
+    margin-left: 0 !important;
+}
+
+#viewDiv {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.modal-backdrop {
+    background-color: transparent;
+}
+
+.dialog ul {
+    padding: 0;
+}
+
+.dialog li {
+    list-style-type: none;
+}
+
+.dialog .row {
+    border-bottom: 1px solid lightgrey;
+}
+
+#toggle-sidebar {
+    line-height: 50px;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.rotate {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+svg > g > text {
+    border: 1px solid lightgrey;
+}
+
+.rotate90 {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+
+#zoomSlider {
+    width: 100px;
+    margin: 20px 10px 0 0;
+}
+
+.zoomText {
+    line-height: 50px;
+    color: #fff;
+}
+
+.zoomBtn {
+    width: 30px;
+    position: absolute;
+    left: 12px;
+    top: 62px;
+    font-size: 14px;
+    z-index: 990;
+}
+
+.zoomBtn > button {
+    padding: 5px 8px;
+}
+
+#login {
+    margin: 0 auto;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 30px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+#loginImg {
+    padding-top: 10vh;
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../img/bg-henan.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#loginImg > h1 {
+    color: white;
+    width: 560px;
+    margin: 50px auto;
+    padding-left: 10px;
+    text-align: center;
+}
+
+#loginLogo {
+    margin-right: 20px;
+    position: relative;
+    top: -6px;
+
+}
+
+#loginBtn {
+    width: 100%;
+}
+
+.user .glyphicon {
+    color: #fff;
+    font-size: 14px;
+    line-height: 50px;
+}
+
+.topBtn a {
+    color: #fff;
+    padding-left: 10px;
+}
+
+#logoutBtn {
+    margin-left: 10px;
+}
+
+#loginName, #loginPwd {
+    padding-left: 25px;
+}
+
+.userIcon {
+    position: relative;
+    top: -25px;
+    left: 7px;
+}
+
+.ui-dialog-titlebar-close {
+    width: auto !important;
+    height: auto !important;
+    margin-top: -12px !important;
+}
+
+.queryTableActive {
+    background-color: #75b9e6 !important;
+    color: white !important;
+}
+
+.ui-dialog .ui-dialog-content {
+    overflow-x: hidden !important;
+}
+
+   /*  rightBar    */
+#rightBar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    width: 400px;
+    border: 1px solid lightgray;
+    padding: 55px 5px 5px 5px;
+    z-index: 9;
+    background: #fff;
+    transition: transform .7s;
+}
+
+.noRadius {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+#right-inner{
+    margin-top:30px;
+}
+
+#rainChart {
+    width: 380px;
+    height: 280px;
+    padding-top: 20px;
+}
+
+
+/* -----------------------------------------
+   show/hide button
+----------------------------------------- */
+#sideLayer,
+#search,
+#upload {
+    position:absolute;
+    right:7px;
+    top:53px;
+    padding:5px 10px;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    background: rgba(0,60,136,.7);
+    z-index: 10;
+    outline: none;
+}
+
+#upload{
+    right: 80px;
+}
+#search{
+    right: 167px;
+}
+
+.show-hide{
+    -webkit-transform: translateX(400px);
+    -moz-transform: translateX(400px);
+    -ms-transform: translateX(400px);
+    -o-transform: translateX(400px);
+    transform: translateX(400px);
+}
+#info{
+    /*height:300px;*/
+    /*border:1px solid royalblue;*/
+    padding:10px;
+}
+#info #detail{
+    width:100%;
+    /*padding:10px;*/
+    word-wrap:break-word;
+    /*margin-top:30px;*/
+}
+#data{
+    display: none;
+}
+#wrapper:after{
+    display: block;
+    content:'';
+    clear:both;
+}
+#wrapper input:[type=button]{
+    float:right;
+    margin:15px 0;
+}
+#data ul{
+    padding-left:0;
+}
+#data ul li{
+    list-style: none;
+}
+
+/* tuli */
+#tuLi{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    overflow: auto;
+    background-color: white;
+    z-index: 100;
+    display: none;
+    border: 1px solid rgb(172, 166, 166);
+    border-radius: 5px;
+
+}
+.tuLiHeader{
+    padding: 0 10px;
+}
+#tuLi .tuLiHeader{
+    border-bottom: 1px solid rgb(172, 166, 166);
+}
+.tuLiBody{
+    padding:15px 20px 0 30px;
+    max-height: 240px;
+    overflow: auto
+}
+.tuLiBody>div{
+    overflow:hidden;
+    display: none;
+}
+.halfDiv{
+    width:50%;
+    height: auto;
+    float: left;
+    padding-bottom: 15px;
+}
+
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
+
+/* 上传文件图表 */
+#file-chart{
+    width: 100%;
+    height: 400px;
+}
