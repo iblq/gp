@@ -109,8 +109,9 @@ function makeChart(data, title){
 }
 
 // 上传文件：
-function setFileChart(data, title) {
-    myChart = echarts.init(document.getElementById('file-chart'));
+function setFileChart(data, id) {
+    id = id || 'file-chart';
+    myChart = echarts.init(document.getElementById(id));
     myChart.setOption(option = {
         title: {
             text: '数据可视化结果'

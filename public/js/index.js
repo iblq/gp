@@ -109,7 +109,6 @@ $(function () {
                     //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
                     //wb.Sheets[Sheet名]获取第一个Sheet的数据
                     var excelData = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-                    console.log(excelData);
                     // 生成图表
                     setFileChart(excelData);
                 };
@@ -130,8 +129,17 @@ $(function () {
             }
 
             importf(file);
-}
+        }
 
+        function searchData(params) {
+            $.get('/data/yuliang', params, function (res, err) {
+                if (res && res.data.length > 0) {
+                    setFileChart(res.data, 'search-chart');
+                } else {
+                    alert('搜索结果为空');
+                }
+            });
+        }
 
         // 上传文件可视化
         $("#upload-container").load("modal.html", function () {
@@ -140,17 +148,37 @@ $(function () {
 
                 $('#file').change(function (e) {
                     var file = e.target.files[0];
-                   readFile(file);
+                    readFile(file);
                 });
-
-
             });
 
-            // 实时数据可视化
-            $('#upload').click(function () {
-                console.log(1);
-                $('#modal-upload').modal('show');
+            // 数据搜索
+            // $("#search-type").selectmenu();
+            // $("#year").selectmenu();
+            // $("#month").selectmenu();
+
+            $('#search').click(function () {
+                $('#modal-search').modal('show');
             });
+
+            $('#searchBtn').click(function () {
+                // var type = $("#search-type").val();
+                var type = 'yuliang';
+                var year = $("#year").val();
+                var month = $("#month").val();
+
+                if (!type) {
+                    alert('请先选择搜索类型');
+                    return;
+                }
+
+                console.log(type);
+                console.log(year);
+                console.log(month);
+
+                searchData({type:type, year:year,month: month});
+            });
+
         });
     });
 });
