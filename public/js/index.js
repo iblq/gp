@@ -73,6 +73,10 @@ $(function () {
 
         // 用户名设置
         var username = findGetParameter('username');
+        if (!username) {
+            location.href = '/login.html';
+        }
+
         username = username === 'admin' ? "管理员" : username;
         $('#username>strong').text(username);
 
@@ -81,8 +85,6 @@ $(function () {
 
         //芦庄 弹窗滑块
         genSlider();
-
-        /*显示隐藏雨图流量图*/
 
         $('#sideLayer').on('click', function () {
             $('#rightBar').toggleClass('show-hide');
@@ -153,10 +155,6 @@ $(function () {
             });
 
             // 数据搜索
-            // $("#search-type").selectmenu();
-            // $("#year").selectmenu();
-            // $("#month").selectmenu();
-
             $('#search').click(function () {
                 $('#modal-search').modal('show');
             });
@@ -171,14 +169,8 @@ $(function () {
                     alert('请先选择搜索类型');
                     return;
                 }
-
-                console.log(type);
-                console.log(year);
-                console.log(month);
-
                 searchData({type:type, year:year,month: month});
             });
-
         });
     });
 });
