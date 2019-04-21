@@ -1,5 +1,6 @@
 function map() {
 
+    // 加载天地图底图
     var tian_di_tu_road_layer = new ol.layer.Tile({
         title: "天地图路网",
         source: new ol.source.XYZ({
@@ -14,47 +15,14 @@ function map() {
         })
     });
 
-    var henanDEMTile = new ol.layer.Tile({
-        title: "DEM",
-        source: new ol.source.XYZ({
-            url: 'http://210.77.68.213:27011/henan_dem/{z}/{x}/{y}'
-        })
-    });
-
-    var henanLandUseTile = new ol.layer.Tile({
-        title: "土地利用",
-        source: new ol.source.XYZ({
-            url: 'http://210.77.68.213:27011/henan_land_use_v2/{z}/{x}/{y}'
-        })
-    });
-
-    var henanSoilTextureTile = new ol.layer.Tile({
-        title: "土壤质地",
-        source: new ol.source.XYZ({
-            url: 'http://210.77.68.213:27011/soil_texture/{z}/{x}/{y}'
-        })
-    });
-
-    var henanRiverTile = new ol.layer.Tile({
-        title: "河流",
-        source: new ol.source.XYZ({
-            url: 'http://210.77.68.213:27011/henan_river/{z}/{x}/{y}'
-        })
-    });
-
-    var rankTile = new ol.layer.Tile({
-        title: "地貌响应单元",
-        source: new ol.source.XYZ({
-            url: 'http://210.77.68.213:27011/basin_rank_v2/{z}/{x}/{y}'
-        })
-    });
-
+    // 定义地图 map 对象
     var map = new ol.Map({
         target: 'map',
         layers: [
             tian_di_tu_road_layer,
             tian_di_tu_annotation
         ],
+        // 设置视图中心为河南省坐标
         view: new ol.View({
             projection: 'EPSG:900913',
             center: [12579102.46, 4028802.03],
@@ -64,6 +32,7 @@ function map() {
 
     var view = map.getView();
 
+    // 定义线条样式
     function lineStyle(color, width) {
         return new ol.style.Style({
             stroke: new ol.style.Stroke({
@@ -73,6 +42,7 @@ function map() {
         });
     }
 
+    // 点样式
     function pointStyle(color, width) {
         return new ol.style.Style({
             image: new ol.style.Circle({
@@ -90,6 +60,7 @@ function map() {
         });
     }
 
+    // 河南省边界线图层
     var henan84 = new ol.layer.Vector({
         source: new ol.source.Vector({
             url: 'js/geojson/henan84.geojson',
@@ -97,6 +68,7 @@ function map() {
         }),
         style: lineStyle("purple", 3)
     });
+    // 市界
     var henan_city84 = new ol.layer.Vector({
         source: new ol.source.Vector({
             url: 'js/geojson/henan_city84.geojson',
@@ -107,6 +79,7 @@ function map() {
 
     var GeoJSONFormat = new ol.format.GeoJSON();
 
+    // 河道节点图层
     var node = new ol.layer.Vector({
         source: new ol.source.Vector({
             url: '/data/node',
@@ -114,7 +87,7 @@ function map() {
         }),
         style: pointStyle("red", 1)
     });
-
+// 雨量站
     var ylzSource = new ol.source.Vector({
         url: '/data/ylz',
         format: GeoJSONFormat
@@ -123,7 +96,7 @@ function map() {
         source: ylzSource,
         style: pointStyle("blue", 1)
     });
-
+// 水文站
     var swzSource = new ol.source.Vector({
         url: '/data/swz',
         format: GeoJSONFormat
@@ -134,9 +107,6 @@ function map() {
     });
 
     map.addLayer(henan84); //添加图层？
-    // map.addLayer(henan_city84);
-
-
 
     var source = new ol.source.Vector({
         wrapX: false
@@ -148,50 +118,24 @@ function map() {
     map.addLayer(vector);
 
     var layers = {
-        "DEM": henanDEMTile,
-        "土壤质地": henanSoilTextureTile,
-        "地貌响应单元": rankTile,
-        "影像": rankTile,
-        "HRU": rankTile,
         "河道节点": node,
         "雨量站": ylz,
         "水文站": swz,
-        "河道": henanRiverTile,
         "市界": henan_city84
     };
 
-    // 图例div排序控制显示隐藏
-    var tuliDivNo = {
-        "土壤质地": 'TRZD',
-        "土地利用": 'TDLY',
-        "地貌响应单元": 'RANK'
-    };
 
     var navDiv = $('.sidebar-inner');
     var layerCheck = $('.specialLayers');
     var tuliNo = 0;
+
     layerCheck.click(function (event, data) { // 点击切换图层显示
         var name = $(this).parent().text().trim();
         var index = $(this).index();
         if (this.checked) {
             map.addLayer(layers[name]);
-            // 图例
-            if (tuliDivNo[name]) {
-                $('#tuLi').show();
-
-                $('.tuLiBody>div[ref=' + tuliDivNo[name]).show();
-                tuliNo += 1;
-            }
-
         } else {
             map.removeLayer(layers[name]);
-            if (tuliDivNo[name]) {
-                $('.tuLiBody>div[ref=' + tuliDivNo[name]).hide();
-                tuliNo -= 1;
-                if (tuliNo === 0) {
-                    $('#tuLi').hide();
-                }
-            }
         }
 
     });
@@ -219,6 +163,7 @@ function map() {
         //'韩城': ['hancheng', [12442712, 4110965]],
     };
 
+    // 生成小流域图层函数
     function setGeoLayer(jsonName) {
         return new ol.layer.Vector({
             source: new ol.source.Vector({
@@ -240,10 +185,12 @@ function map() {
 
     var liuyu14Layers = setLiuyu14Layer();
 
+    // 显示小流域位置
     function showOneLiuyu(name, duration) {
         if (liuyu14[name]) {
             map.addLayer(liuyu14Layers[liuyu14[name][0]]);
 
+            // 地图飞行效果
             view.animate({
                 center: liuyu14[name][1],
                 zoom: 10,
@@ -269,19 +216,8 @@ function map() {
         }
     });
 
-    // navbar 透明度调节
-    $('.navSlide').slider({
-        max: 1,
-        min: 0.3,
-        step: 0.1,
-        value: 1,
-        change: function (e, ui) {
-            // var ref = $(this).attr('ref');
-            // featureLayers[ref].opacity = ui.value;
-        }
-    });
 
-    // a normal select interaction to handle click
+    // 按住 ctrl 框选地图
     var select = new ol.interaction.Select();
     map.addInteraction(select);
 
@@ -311,7 +247,7 @@ function map() {
 
         $('#rightBar').removeClass('show-hide');
 
-        // show drag rectangle       
+        // 显示框选的矩形       
         var dragRect = new ol.source.Vector();
         dragRect.addFeature(new ol.Feature(new ol.geom.LineString([
             [extent[0], extent[1]],
@@ -341,12 +277,13 @@ function map() {
         });
     });
 
-    // clear selection when drawing a new box and when clicking on the map
+    // 开始时清楚历史框选记录
     dragBox.on('boxstart', function () {
         map.removeLayer(dragRectLayer);
         selectedFeatures.clear();
     });
 
+    // 节点框选中时记录统计
     selectedFeatures.on(['add', 'remove'], function () {
         var names = selectedFeatures.getArray().map(function (feature) {
             return feature.get('站名');
