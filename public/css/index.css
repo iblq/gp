@@ -320,6 +320,7 @@ svg > g > text {
    show/hide button
 ----------------------------------------- */
 #sideLayer,
+#upload-geo,
 #search,
 #upload {
     position:absolute;
@@ -336,6 +337,9 @@ svg > g > text {
 
 #upload{
     right: 80px;
+}
+#upload-geo{
+    right: 254px;
 }
 #search{
     right: 167px;

@@ -18,10 +18,15 @@ router.get('/data/:type', function (req, res, next) {
     case "swz":
       data = fs.readFileSync('./public/js/geojson/swz.geojson');
       break;
+    default:
+      data = fs.readFileSync('./public/uploads/' + req.params.type);
+      break;
   }
 
   res.send(data);
 });
+
+
 
 
 module.exports = router;

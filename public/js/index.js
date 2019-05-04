@@ -20,6 +20,8 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+var fileLayer = [];
+
 // 注销
 function logout() {
     $('#logoutBtn').click(function () {
@@ -54,7 +56,7 @@ $(function () {
 
         nav();
         logout();
-        map();
+        setMap();
 
         // 济源小流域信息点击显示
         $('.show-rank-legend').click(function () {
@@ -175,6 +177,44 @@ $(function () {
                     return;
                 }
                 searchData({ type: type, year: year, month: month });
+            });
+
+            // 点击地图数据可视化显示
+            $('#upload-geo').click(function () {
+                $('#modal-upload-geo').modal('show');
+
+                $('#file-geo').change(function (e) {
+                    var file = e.target.files[0];
+                    var data = new FormData();
+                    data.append('file', file)
+
+                    $.ajax({
+                        url: '/upload',
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        type: 'POST',
+                        success: function (result) {
+                            var layer = getGeojsonLayer('/data/' + result)
+
+                            // 删除历史文件数据图层
+                            for (var i = 0; i < fileLayer.length; i++) {
+                                var layer = fileLayer[i];
+                                map.removeLayer(layer)
+                            }
+
+                            // 文件保存成功，加载到地图
+                            map.addLayer(layer)
+                            fileLayer.push(layer)
+                            $('#modal-upload-geo').modal('hide');
+
+
+                        },
+                        error: function (err) {
+                            alert('上传失败')
+                        }
+                    });
+                });
             });
         });
     });

@@ -1,4 +1,5 @@
-function map() {
+var map
+function setMap() {
 
     // 加载天地图底图
     var tian_di_tu_road_layer = new ol.layer.Tile({
@@ -16,7 +17,7 @@ function map() {
     });
 
     // 定义地图 map 对象
-    var map = new ol.Map({
+    map = new ol.Map({
         target: 'map',
         layers: [
             tian_di_tu_road_layer,
@@ -87,7 +88,7 @@ function map() {
         }),
         style: pointStyle("red", 1)
     });
-// 雨量站
+    // 雨量站
     var ylzSource = new ol.source.Vector({
         url: '/data/ylz',
         format: GeoJSONFormat
@@ -96,7 +97,7 @@ function map() {
         source: ylzSource,
         style: pointStyle("blue", 1)
     });
-// 水文站
+    // 水文站
     var swzSource = new ol.source.Vector({
         url: '/data/swz',
         format: GeoJSONFormat
@@ -105,6 +106,19 @@ function map() {
         source: swzSource,
         style: pointStyle("green", 3)
     });
+
+    // 从服务器获取数据加载到地图
+    window.getGeojsonLayer = function (path) {
+        var source = new ol.source.Vector({
+            url: path,
+            format: GeoJSONFormat
+        });
+        var layer = new ol.layer.Vector({
+            source: source,
+            style: pointStyle("green", 3)
+        });
+        return layer
+    }
 
     map.addLayer(henan84); //添加图层？
 
@@ -148,7 +162,7 @@ function map() {
         '中汤': ['zhongtang', [12513775, 3995184]],
         '新郑': ['xinzheng', [12623218, 4094565]],
         '半店': ['bandian', [12436940, 3879169]],
-        '潭头': ['tantou', [12416101, 4033716]], 
+        '潭头': ['tantou', [12416101, 4033716]],
         '济源': ['jiyuan', [12522611, 4184086]],
         '芦庄': ['luzhuang', [12662449, 3863678]],
         '栾川': ['luanchuan', [12408623, 4003995]],
@@ -210,7 +224,7 @@ function map() {
         } else {
             $(this).parent().parent().next().addClass('hidden');
 
-            if (liuyu14[name] && liuyu14Layers[liuyu14[name][0]]) { 
+            if (liuyu14[name] && liuyu14Layers[liuyu14[name][0]]) {
                 map.removeLayer(liuyu14Layers[liuyu14[name][0]]);
             }
         }
