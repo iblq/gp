@@ -56,12 +56,17 @@ $(function () {
         logout();
         map();
 
+        // 济源小流域信息点击显示
         $('.show-rank-legend').click(function () {
-            var basin = $(this).data('basin');
-            $('#legend-modal-title').text($(this).parent().prev().text() + '统计');
+            var basin = $(this).data('basin'); // jiyuan
+            // 设置弹窗标题
+            $('#legend-modal-title').text($(this).parent().prev().text() + '小流域信息');
+            // 显示弹窗
             $('#modal-legend').modal('show');
-            $('.legend-content').hide();
-            $('#legend-content-' + basin).show();
+            // 隐藏所有内容
+            $('.liuyu-info').hide();
+            // 显示当前点击的内容
+            $('#info-' + basin).show();
         });
 
         // 加载图例dom
@@ -169,7 +174,7 @@ $(function () {
                     alert('请先选择搜索类型');
                     return;
                 }
-                searchData({type:type, year:year,month: month});
+                searchData({ type: type, year: year, month: month });
             });
         });
     });

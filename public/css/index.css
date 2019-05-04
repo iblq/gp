@@ -424,3 +424,19 @@ svg > g > text {
     width: 100%;
     height: 400px;
 }
+
+.inline-img{
+    width: 300px;
+    float: right;
+    margin: 10px 20px;
+}
+
+.right-icon{
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+
+.liuyu-info{
+    display: none;
+}
