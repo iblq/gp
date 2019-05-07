@@ -6,6 +6,7 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+// 定义服务端api接口
 router.get('/data/:type', function (req, res, next) {
   let data;
   switch (req.params.type) {
@@ -19,6 +20,7 @@ router.get('/data/:type', function (req, res, next) {
       data = fs.readFileSync('./public/js/geojson/swz.geojson');
       break;
     default:
+      // 获取uploads目录下文件的数据
       data = fs.readFileSync('./public/uploads/' + req.params.type);
       break;
   }

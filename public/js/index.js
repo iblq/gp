@@ -183,11 +183,12 @@ $(function () {
             $('#upload-geo').click(function () {
                 $('#modal-upload-geo').modal('show');
 
+                // 上传文件输入框检测有选择文件时
                 $('#file-geo').change(function (e) {
                     var file = e.target.files[0];
                     var data = new FormData();
                     data.append('file', file)
-
+                    // 发送文件到服务器
                     $.ajax({
                         url: '/upload',
                         data: data,
@@ -195,6 +196,8 @@ $(function () {
                         processData: false,
                         type: 'POST',
                         success: function (result) {
+                            // 服务器收到文件并保存到public/uploads目录后返回文件访问路径 result
+                            // getGeojsonLayer 函数通过服务器文件路径生成图层
                             var layer = getGeojsonLayer('/data/' + result)
 
                             // 删除历史文件数据图层
@@ -203,12 +206,10 @@ $(function () {
                                 map.removeLayer(layer)
                             }
 
-                            // 文件保存成功，加载到地图
+                            // 文件数据图层加载到地图
                             map.addLayer(layer)
                             fileLayer.push(layer)
                             $('#modal-upload-geo').modal('hide');
-
-
                         },
                         error: function (err) {
                             alert('上传失败')

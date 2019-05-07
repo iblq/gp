@@ -54,12 +54,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-
+// multer 库完成文件保存
 var multer = require("multer");
-// 这里dest对应的值是你要将上传的文件存的文件夹
+// 这里dest对应的值是你要将上传的文件保存的文件夹
 var fileSavePath = './public/uploads'
 var upload = multer({ dest: fileSavePath });
-
+// 文件上传api配置
 app.post("/upload", upload.single('file'), (req, res) => {
 
   // req.file 是 'file' 文件的信息 （前端传递的文件类型在req.file中获取）
