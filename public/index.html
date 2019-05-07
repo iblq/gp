@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>河南省小流域管理系统</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
     <link href="js/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
     <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -28,209 +30,276 @@
     <script src="js/slider.js"></script>
     <script src="js/index.js"></script>
     <!-- <script src="js/login.js"></script> -->
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="container-fluid">
-        <div id="header" class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <!--<img id="logo" src="img/logo.png" alt="">-->
+      <div id="header" class="row">
+        <div class="col-md-6 col-sm-6 col-xs-6">
+          <!--<img id="logo" src="img/logo.png" alt="">-->
 
-                <span class="logoText">
-                    <span class="glyphicon glyphicon-home" style="margin:0 10px;"></span>
-                    河南省小流域参数化研究平台</span>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6 user">
-                <div class="pull-right topBtn">
-                    <a id="username" href="javascript:void(0)">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <strong>用户名</strong>
-                    </a>
-                    <a id="logoutBtn" href="javascript:void(0)">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                        注销
-                    </a>
-                </div>
-            </div>
+          <span class="logoText">
+            <span
+              class="glyphicon glyphicon-home"
+              style="margin:0 10px;"
+            ></span>
+            河南省小流域参数化研究平台</span
+          >
         </div>
+      </div>
     </div>
 
     <div id="sidebar">
-        <div class="sidebar-inner">
-        </div>
+      <div class="sidebar-inner"></div>
     </div>
 
     <div id="content">
-        <div id="map" class="map">
-            <button type="button" id="search">数据搜索</button>
-            <button type="button" id="upload-geo">地图数据可视化</button>
-            <button type="button" id="upload">上传文件</button>
-            <button type="button" id="sideLayer">侧面板</button>
+      <div id="map" class="map">
+        <button type="button" id="search">数据搜索</button>
+        <button type="button" id="upload-geo">地图数据可视化</button>
+        <button type="button" id="upload">上传文件</button>
+        <button type="button" id="sideLayer">侧面板</button>
 
-            <div id="rightBar" class="show-hide">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12">
-                        <div id="info">
-                            <div id="detail">
-                                请先勾选雨量站图层，然后按住"Ctrl"键选择范围，然后点击开始计算
-                            </div>
-                            <div id="data">
-                                <ul>
-                                    <li>
-                                        <h4>DEM提取</h4>
-                                        <div class="progress">
-                                            <div id="progress-bar1" class="progress-bar progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 0%">
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h4>投影转换</h4>
-                                        <div class="progress">
-                                            <div id="progress-bar2" class="progress-bar progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 0%">
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h4>提取水文站</h4>
-                                        <div class="progress">
-                                            <div id="progress-bar4" class="progress-bar progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 0%">
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h4>生成矢量数据</h4>
-                                        <div class="progress">
-                                            <div id="progress-bar5" class="progress-bar progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 0%">
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h4>导入模型运算</h4>
-                                        <div class="progress">
-                                            <div id="progress-bar7" class="progress-bar progress-bar-striped active"
-                                                role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                                                aria-valuemax="100" style="width: 0%">
-
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- info -->
-                        <button type="button" id="calculate" class="btn btn-block btn-success">开始计算</button>
-                        <div id="rainChart">
-                        </div>
-                    </div>
-                    <!-- col-lg-12 col-sm-12 -->
+        <div id="rightBar" class="show-hide">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+              <div id="info">
+                <div id="detail">
+                  请先勾选雨量站图层，然后按住"Ctrl"键选择范围，然后点击开始计算
                 </div>
-                <!-- row -->
+                <div id="data">
+                  <ul>
+                    <li>
+                      <h4>DEM提取</h4>
+                      <div class="progress">
+                        <div
+                          id="progress-bar1"
+                          class="progress-bar progress-bar-striped active"
+                          role="progressbar"
+                          aria-valuenow="100"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style="width: 0%"
+                        ></div>
+                      </div>
+                    </li>
+                    <li>
+                      <h4>投影转换</h4>
+                      <div class="progress">
+                        <div
+                          id="progress-bar2"
+                          class="progress-bar progress-bar-striped active"
+                          role="progressbar"
+                          aria-valuenow="100"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style="width: 0%"
+                        ></div>
+                      </div>
+                    </li>
+                    <li>
+                      <h4>提取水文站</h4>
+                      <div class="progress">
+                        <div
+                          id="progress-bar4"
+                          class="progress-bar progress-bar-striped active"
+                          role="progressbar"
+                          aria-valuenow="100"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style="width: 0%"
+                        ></div>
+                      </div>
+                    </li>
+                    <li>
+                      <h4>生成矢量数据</h4>
+                      <div class="progress">
+                        <div
+                          id="progress-bar5"
+                          class="progress-bar progress-bar-striped active"
+                          role="progressbar"
+                          aria-valuenow="100"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style="width: 0%"
+                        ></div>
+                      </div>
+                    </li>
+                    <li>
+                      <h4>导入模型运算</h4>
+                      <div class="progress">
+                        <div
+                          id="progress-bar7"
+                          class="progress-bar progress-bar-striped active"
+                          role="progressbar"
+                          aria-valuenow="100"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          style="width: 0%"
+                        ></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- info -->
+              <button
+                type="button"
+                id="calculate"
+                class="btn btn-block btn-success"
+              >
+                开始计算
+              </button>
+              <div id="rainChart"></div>
             </div>
-            <!-- rightBar -->
+            <!-- col-lg-12 col-sm-12 -->
+          </div>
+          <!-- row -->
         </div>
+        <!-- rightBar -->
+      </div>
     </div>
     <div id="tuliDiv"></div>
-    <div id="modal-chart" class="modal fade" tabindex="-1" role="dialog" style="z-index:999999">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="chart-modal-title">Modal title</h4>
+    <div
+      id="modal-chart"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      style="z-index:999999"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="chart-modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12" id="params-console">
+                <div class="col-lg-4 col-md-4">
+                  <h5>
+                    conductivity：<span class="conduct-slider-value">5E-8</span>
+                  </h5>
+                  <div class="conductivity-slider mySlider"></div>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-12" id="params-console">
-                            <div class="col-lg-4 col-md-4">
-                                <h5>conductivity：<span class="conduct-slider-value">5E-8</span></h5>
-                                <div class="conductivity-slider mySlider"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin:15px 0px;">
-                        <div class="col-lg-12">
-                            <button id="run-model" class="btn btn-success">运行模型</button>
-                        </div>
-                    </div>
-                    <div class="row" id="row-chart">
-                        <div class="col-lg-12" id="result-chart" style="height:300px">
-                        </div>
-                    </div>
-                    <div class="row" id="row-progress">
-                        <div class="col-lg-12">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                    <span class="sr-only"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- row progress -->
+              </div>
+            </div>
+            <div class="row" style="margin:15px 0px;">
+              <div class="col-lg-12">
+                <button id="run-model" class="btn btn-success">运行模型</button>
+              </div>
+            </div>
+            <div class="row" id="row-chart">
+              <div
+                class="col-lg-12"
+                id="result-chart"
+                style="height:300px"
+              ></div>
+            </div>
+            <div class="row" id="row-progress">
+              <div class="col-lg-12">
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-striped active"
+                    role="progressbar"
+                    aria-valuenow="100"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    style="width: 100%"
+                  >
+                    <span class="sr-only"></span>
+                  </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+              </div>
+            </div>
+            <!-- row progress -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <!-- 点击 i 图标显示小流域信息 -->
-    <div id="modal-legend" class="modal fade" tabindex="-1" role="dialog" style="z-index:999999">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="legend-modal-title">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    <!-- 济源的点击显示信息 -->
-                    <div id="info-jiyuan" class="liuyu-info">
-                        <h5>市情概况</h5>
-                        <p>
-                            济源市地处豫西北,地理座标位于东径112°02′～112°45′，北纬34°53′～35°17′之间。属暖温带半湿润大陆性季风型气候，四季分明，干旱或半干旱季节明显，春季气温回升快，多风少雨干旱；夏季炎热，光照充足，降水集中；秋季秋高气爽；冬季寒冷，干燥少雪。全市辖11个镇、5个街道办事外，549个行政村，总面积1931平方公里，总人口68万。
-                        </p>
-                        <h5>实施成效</h5>
-                        <img class="inline-img" src="./img/jiyuan_1.jpg" alt="济源小流域">
-                        <p>
-                            经过多年的水土保持生态建设，市域内25度以上的坡耕地全部退耕还林，陡坡开荒全面禁止，90%的坡耕地得到治理，林草保存面积占宜林宜草面积的87%，治理度80%以上的小流域面积占市域应治理小流域总面积的58%，林草覆盖面积达到87%以上，森林覆盖率达到42.38%，水土保持功效得到提升，水土流失综合治理程度达到71%，土壤侵蚀量减少67.6%。生产建设项目严格落实水土保持“三同时”制度，水土保持方案申报率、实施率、验收率均达到95%以上。
-                        </p>
-                    </div>
-                    <!-- 其他的也可以显示，如潭头 -->
-                    <div id="info-tantou" class="liuyu-info">
-                        <h5>小标题1</h5>
-                        <p>
-                            内容1
-                        </p>
-                        <h5>小标题2</h5>
-                        <img class="inline-img" src="./img/jiyuan_1.jpg" alt="济源小流域">
-                        <p>
-                            内容2
-                        </p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
+    <div
+      id="modal-legend"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      style="z-index:999999"
+    >
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="legend-modal-title">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <!-- 济源的点击显示信息 -->
+            <div id="info-jiyuan" class="liuyu-info">
+              <h5>市情概况</h5>
+              <p>
+                济源市地处豫西北,地理座标位于东径112°02′～112°45′，北纬34°53′～35°17′之间。属暖温带半湿润大陆性季风型气候，四季分明，干旱或半干旱季节明显，春季气温回升快，多风少雨干旱；夏季炎热，光照充足，降水集中；秋季秋高气爽；冬季寒冷，干燥少雪。全市辖11个镇、5个街道办事外，549个行政村，总面积1931平方公里，总人口68万。
+              </p>
+              <h5>实施成效</h5>
+              <img
+                class="inline-img"
+                src="./img/jiyuan_1.jpg"
+                alt="济源小流域"
+              />
+              <p>
+                经过多年的水土保持生态建设，市域内25度以上的坡耕地全部退耕还林，陡坡开荒全面禁止，90%的坡耕地得到治理，林草保存面积占宜林宜草面积的87%，治理度80%以上的小流域面积占市域应治理小流域总面积的58%，林草覆盖面积达到87%以上，森林覆盖率达到42.38%，水土保持功效得到提升，水土流失综合治理程度达到71%，土壤侵蚀量减少67.6%。生产建设项目严格落实水土保持“三同时”制度，水土保持方案申报率、实施率、验收率均达到95%以上。
+              </p>
+            </div>
+            <!-- 其他的也可以显示，如潭头 -->
+            <div id="info-tantou" class="liuyu-info">
+              <h5>小标题1</h5>
+              <p>
+                内容1
+              </p>
+              <h5>小标题2</h5>
+              <img
+                class="inline-img"
+                src="./img/jiyuan_1.jpg"
+                alt="济源小流域"
+              />
+              <p>
+                内容2
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              关闭
+            </button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <div id="upload-container"></div>
-</body>
-
+  </body>
 </html>
