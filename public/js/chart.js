@@ -176,7 +176,7 @@ function setFileChart(data, id) {
             }
         },
         series: {
-            name: 'Beijing AQI',
+            name: 'Henan AQI',
             type: 'line',
             data: data.map(function (item) {
                 return item[1];
