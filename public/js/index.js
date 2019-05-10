@@ -93,10 +93,7 @@ $(function() {
       });
     });
 
-    //参数滑块
-    $('#param-slider').slider();
-
-    //芦庄 弹窗滑块
+    // 侧面板弹窗图表配置
     genSlider();
 
     $('#sideLayer').on('click', function() {
