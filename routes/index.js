@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const yuliangData = require('../model/yuliang.js');
+const liuliangData = require('../model/liuliang');
 var model = {
-  yuliang: yuliangData
+  yuliang: yuliangData,
+  liuliang: liuliangData
 };
 
 router.get('/', function(req, res, next) {

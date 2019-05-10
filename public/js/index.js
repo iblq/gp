@@ -9,21 +9,6 @@ function mapWindowResize(elementId) {
 var fileLayer = [];
 
 function nav() {
-  var firstLayer = [
-    'DEM',
-    '土地利用',
-    '土壤质地',
-    '地貌响应单元',
-    '影像',
-    'HRU',
-    '小流域',
-    '河道节点',
-    '雨量站',
-    '水文站',
-    '河道',
-    '市界',
-    '流域列表'
-  ];
   var secLayer = [
     '潭头',
     '济源',
@@ -93,7 +78,7 @@ $(function() {
       });
     });
 
-    // 侧面板弹窗图表配置
+    // 侧面板交互
     genSlider();
 
     $('#sideLayer').on('click', function() {
@@ -177,8 +162,8 @@ $(function() {
       });
 
       $('#searchBtn').click(function() {
-        // var type = $("#search-type").val();
-        var type = 'yuliang';
+        var type = $('#search-type').val();
+        // var type = 'yuliang';
         var year = $('#year').val();
         var month = $('#month').val();
 
