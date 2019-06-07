@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const path = require('path');
 const yuliangData = require('../model/yuliang.js');
 const liuliangData = require('../model/liuliang');
 var model = {
@@ -50,13 +51,17 @@ router.get('/data/:type', function(req, res, next) {
         data = fs.readFileSync('./public/js/geojson/ylz_3857.geojson');
         break;
       case 'node':
-        data = fs.readFileSync('/public/js/geojson/node.geojson');
+        data = fs.readFileSync('./public/js/geojson/node.geojson');
         break;
       case 'swz':
-        data = fs.readFileSync('/public/js/geojson/swz.geojson');
+        data = fs.readFileSync(
+          path.resolve(__dirname, '../public/js/geojson/swz.geojson')
+        );
         break;
       case 'yuliang':
-        data = fs.readFileSync('/public/js/geojson/yuliang_chart.geojson');
+        data = fs.readFileSync(
+          path.resolve(__dirname, '../public/js/geojson/yuliang_chart.geojson')
+        );
         break;
       default:
         // 获取uploads目录下文件的数据
