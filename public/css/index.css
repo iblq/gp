@@ -318,13 +318,23 @@ svg > g > text {
 /* -----------------------------------------
    show/hide button
 ----------------------------------------- */
+
+#btn-wrap {
+  position: absolute;
+  right: 0;
+  top: 53px;
+  height: 40px;
+  width: 400px;
+  transition: transform 0.7s;
+  z-index: 999;
+}
+
 #sideLayer,
 #upload-geo,
 #search,
 #upload {
   position: absolute;
   right: 7px;
-  top: 53px;
   padding: 5px 10px;
   color: #fff;
   border: none;
@@ -335,13 +345,13 @@ svg > g > text {
 }
 
 #upload {
-  right: 167px;
+  right: 177px;
 }
 #upload-geo {
-  right: 254px;
+  right: 264px;
 }
 #search {
-  right: 80px;
+  right: 90px;
 }
 
 .show-hide {
@@ -350,6 +360,14 @@ svg > g > text {
   -ms-transform: translateX(400px);
   -o-transform: translateX(400px);
   transform: translateX(400px);
+}
+.-show-hide {
+  -webkit-transform: translateX(-400px);
+  -moz-transform: translateX(-400px);
+  -ms-transform: translateX(-400px);
+  -o-transform: translateX(-400px);
+  transform: translateX(-400px);
+  z-index: 299;
 }
 #info {
   /*height:300px;*/
