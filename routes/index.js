@@ -4,9 +4,11 @@ const fs = require('fs');
 const yuliangData = require('../model/yuliang.js');
 const liuliangData = require('../model/liuliang');
 var model = {
-  yuliang: yuliangData,
-  liuliang: liuliangData
+  雨量指数: yuliangData,
+  流量指数: liuliangData
 };
+
+console.log(yuliangData);
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
