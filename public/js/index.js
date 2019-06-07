@@ -83,7 +83,6 @@ $(function() {
 
     $('#sideLayer').on('click', function() {
       $('#rightBar').toggleClass('show-hide');
-      $('#btn-wrap').toggleClass('-show-hide');
     });
 
     // 读取文件内容

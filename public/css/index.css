@@ -296,6 +296,7 @@ svg > g > text {
   z-index: 9;
   background: #fff;
   transition: transform 0.7s;
+  padding-top: 100px;
 }
 
 .noRadius {
@@ -345,13 +346,13 @@ svg > g > text {
 }
 
 #upload {
-  right: 177px;
+  right: 179px;
 }
 #upload-geo {
   right: 264px;
 }
 #search {
-  right: 90px;
+  right: 92px;
 }
 
 .show-hide {
@@ -369,7 +370,7 @@ svg > g > text {
   transform: translateX(-400px);
   z-index: 299;
 }
-#info {
+s #info {
   /*height:300px;*/
   /*border:1px solid royalblue;*/
   padding: 10px;
