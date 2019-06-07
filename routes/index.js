@@ -51,7 +51,7 @@ router.get('/data/:type', function(req, res, next) {
         data = fs.readFileSync(path.resolve(__dirname, '../public/js/geojson/ylz_3857.geojson'));
         break;
       case 'node':
-        data = fs.readFileSync(path.resolve(__dirname,'./public/js/geojson/node.geojson'));
+        data = fs.readFileSync(path.resolve(__dirname,'../public/js/geojson/node.geojson'));
         break;
       case 'swz':
         data = fs.readFileSync(
@@ -65,7 +65,7 @@ router.get('/data/:type', function(req, res, next) {
         break;
       default:
         // 获取uploads目录下文件的数据
-        data = fs.readFileSync(path.resolve(__dirname, './public/uploads/' + req.params.type));
+        data = fs.readFileSync(path.resolve(__dirname, '../public/uploads/' + req.params.type));
         break;
     }
   }
