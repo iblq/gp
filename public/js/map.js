@@ -257,6 +257,8 @@ function setMap() {
   dragBox.on('boxend', function() {
     // features that intersect the box are added to the collection of
     // selected features
+    $('#detail').css('display', 'block');
+
     var extent = dragBox.getGeometry().getExtent();
     // infoBox.innerHTML = '<span>' + extent + '</span>';
     detailBox.innerHTML = extent;
